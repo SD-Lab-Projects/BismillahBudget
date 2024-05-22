@@ -1,3 +1,4 @@
+import 'package:bismillahbudget/utility/Appvalidator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 //ignore_for_file:prefer_const_constructors
@@ -8,8 +9,8 @@ class LoginView extends StatelessWidget {
   final GlobalKey<FormState>_formKey = GlobalKey<FormState>();
 
   Future<void> _submitForm() async {
-    if (_formKey.currentstate!.validate()) {
-      scaffoldMessenger.of(_formKey.currentContext!).showSnackBar(
+    if (_formKey.currentState!.validate()) {
+      ScaffoldMessenger.of(_formKey.currentContext!).showSnackBar(
         const SnackBar(content: Text('form submitted successfully')),
       );
     }
@@ -20,17 +21,22 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: color(0xFF252634),
-      body: singleChildScrollView(
+      backgroundColor: Color(0xFF252634),
+      body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Form(
-              Key: _formKey,
-              child: column(
+              key: _formKey,
+              child: Column(
                 children: [
                 SizedBox(
-                height:80.0,
-              ), //SizedBox
+                height: 80.0
+              ),
+
+
+
+
+              //SizedBox
               width: 250,
               child: Text(
                 "Login Account",
@@ -126,7 +132,7 @@ class LoginView extends StatelessWidget {
 
   SizedBox(
 
-  Color(0xFFF15900), fontSize: 20),
+ color: Color(0xFFF15900), fontSize: 20, required double height),
 
   InputDecoration _buildInputDecoration(String label, IconData suffixIcon) {
 
