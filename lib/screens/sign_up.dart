@@ -1,11 +1,52 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
-class SignUpView extends StatelessWidget{
-  SignUpView({super.key});
+class Myform extends StatelessWidget {
+  const MyForm({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('My Form'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Form(
+          child: Column(
+            children: [
+              TextFormField(
+                decoration: InputDecoration(
+                    labelText: 'Username',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0)
+                    )
+                ),
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                    labelText: 'Email',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0)
+                    )
+                ),
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                    labelText: 'Phone Number',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0)
+                    )
+                ),
+              ),
+
+
+            ],
+          ),
+        ),
+      ),
+    );
   }
+
+
 }
