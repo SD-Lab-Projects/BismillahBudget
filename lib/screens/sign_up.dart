@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 
-class Myform extends StatelessWidget {
+class MyForm extends StatelessWidget {
   const MyForm({super.key});
 
   @override
