@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "743554030339",
+    "project_id": "bismillahbudget",
+    "storage_bucket": "bismillahbudget.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:743554030339:android:17adfa01569ec079bb2736",
+        "android_client_info": {
+          "package_name": "com.example.bismillahbudget"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2jUxCxC_FiVRHSD-7_usiUv0NPvWRUjA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

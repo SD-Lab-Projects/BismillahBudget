@@ -4,11 +4,8 @@ import 'package:flutter/material.dart';
 
 class SignUp_view extends StatelessWidget {
   SignUp_view({super.key});
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
   //get child => null;
-
   Future<void> _submitForm() async {
     if (_formKey.currentState!.validate()) {
       ScaffoldMessenger.of(_formKey.currentState! as BuildContext).showSnackBar(
@@ -19,6 +16,10 @@ class SignUp_view extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        backgroundColor: Color(0xFF252634),
+      ),
       backgroundColor: Color(0xFF252634),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

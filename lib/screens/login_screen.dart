@@ -1,5 +1,6 @@
 import 'package:bismillahbudget/utility/Appvalidator.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class LoginView extends StatelessWidget {
   LoginView({Key? key}) : super(key: key);
@@ -19,6 +20,7 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Color(0xFF252634),
       body: SingleChildScrollView(
         child: Padding(
@@ -71,10 +73,7 @@ class LoginView extends StatelessWidget {
                 SizedBox(height: 30.0),
                 TextButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => SignUpView()),
-                    );
+                    Get.to(SignUpView());
                   },
                   child: Text(
                     "Create new account",
