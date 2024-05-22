@@ -23,6 +23,9 @@ class Myform extends StatelessWidget {
                     )
                 ),
               ),
+              SizedBox(
+                height: 16.0,
+              ),
               TextFormField(
                 decoration: InputDecoration(
                     labelText: 'Email',
@@ -30,6 +33,9 @@ class Myform extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10.0)
                     )
                 ),
+              ),
+              SizedBox(
+                height: 16.0,
               ),
               TextFormField(
                 decoration: InputDecoration(
@@ -39,6 +45,15 @@ class Myform extends StatelessWidget {
                     )
                 ),
               ),
+              SizedBox(
+                height: 16.0,
+              ),
+              Container(
+                  height: 50,
+                  width: double.infinity,
+                  child:
+                     ElevatedButton(onPressed:  () {}, child:Text("Submit") ))
+
 
 
             ],
