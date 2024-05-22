@@ -122,7 +122,7 @@ class SignUp_view extends StatelessWidget {
               ),
               SizedBox(
                   height: 50,
-                  width:50,
+                  width:double.infinity,
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.yellow),
