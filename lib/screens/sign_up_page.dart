@@ -1,19 +1,46 @@
+import 'package:bismillahbudget/Services/auth_serices.dart';
 import 'package:bismillahbudget/screens/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../utility/Appvalidator.dart';
-
-
-class SignUpViewPage extends StatelessWidget {
+class SignUpViewPage extends StatefulWidget{
   SignUpViewPage({super.key});
+  @override
+  State<SignUpViewPage> createState() => _SignUpViewPageState();
+
+}
+
+class _SignUpViewPageState extends State<SignUpViewPage> {
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final _userNameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _phoneController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  var authService = AuthServices();
+  var isLoader = false;
 
   Future<void> _submitForm(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Form Submitted successfully')),
-      );
+      setState(() {
+        isLoader=true;
+      });
+      var data = {
+        "username": _userNameController.text,
+        "email": _emailController.text,
+        "phone": _phoneController.text,
+        "password": _passwordController.text,
+      };
+
+     await authService.createUser(data, context);
+      setState(() {
+        isLoader=false;
+      });
+      //ScaffoldMessenger.of(context).showSnackBar(
+      //  const SnackBar(content: Text('Form Submitted successfully')),
+      //);
     }
   }
 
@@ -49,6 +76,7 @@ class SignUpViewPage extends StatelessWidget {
                 height: 16.0,
               ),
               TextFormField(
+                controller: _userNameController,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 decoration: _buildInputDecoration("Username", Icons.person),
                 validator: AppValidator.validateUsername,
@@ -60,6 +88,7 @@ class SignUpViewPage extends StatelessWidget {
                 height: 16.0,
               ),
               TextFormField(
+                controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
                 style: TextStyle(color: Colors.white),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -70,6 +99,7 @@ class SignUpViewPage extends StatelessWidget {
                 height: 16.0,
               ),
               TextFormField(
+                controller: _phoneController,
                 keyboardType: TextInputType.phone,
                 style: TextStyle(color: Colors.white),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -80,6 +110,7 @@ class SignUpViewPage extends StatelessWidget {
                 height: 16.0,
               ),
               TextFormField(
+                controller: _passwordController,
                 keyboardType: TextInputType.visiblePassword,
                 style: TextStyle(color: Colors.white),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -96,9 +127,11 @@ class SignUpViewPage extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.yellow),
                       onPressed: () {
-                        _submitForm(context);
+                        isLoader? print("Loading"): _submitForm(context);
                       },
-                      child: Text(
+                      child:
+                      isLoader? Center(child: CircularProgressIndicator() ):
+                      Text(
                         "Create",
                         style: TextStyle(
                             fontSize: 25.0, fontWeight: FontWeight.bold),
