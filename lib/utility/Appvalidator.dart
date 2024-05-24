@@ -1,36 +1,42 @@
-class AppValidator{
-
-  String?_validateEmail(value){
-    if(value!.isEmpty){
-      return 'Please enter a email';
+// app_validator.dart
+class AppValidator {
+  static String? validateEmail(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter an email';
     }
-    RegExp emailRegExp = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-    if(!emailRegExp.hasMatch(value)){
+
+    RegExp emailRegExp = RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
+    if (!emailRegExp.hasMatch(value)) {
       return 'Please enter a valid email';
     }
     return null;
   }
 
-  String? _validatePhoneNumber(value){
-    if(value!.isEmpty){
-      return 'Please enter a PhoneNumber';
-    }
-    if(value.length!=11){
-      return 'Please enter a 11 digit phone number';
-    }
-    return null;
-  }
-
-  String? _validatePassword(value){
-    if(value!.isEmpty){
-      return 'Please enter a passsword';
-    }
-    return null;
-  }
-
-  String? _validateUsername(value){
-    if(value!.isEmpty){
+  static String? validateUsername(String? value) {
+    if (value == null || value.isEmpty) {
       return 'Please enter a username';
+    }
+    return null;
+  }
+
+  static String? validatePhone(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter a phone number';
+    }
+
+    if (value.length != 11) {
+      return 'Please enter an 11 digit phone number';
+    }
+    return null;
+  }
+
+  static String? validatePassword(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter a password';
+    }
+
+    if (value.length < 8) {
+      return 'Password must be at least 8 characters long';
     }
     return null;
   }

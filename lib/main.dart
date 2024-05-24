@@ -1,4 +1,5 @@
 import 'package:bismillahbudget/screens/dashboard.dart';
+import 'package:bismillahbudget/screens/login_page.dart';
 import 'package:bismillahbudget/screens/login_screen.dart';
 import 'package:bismillahbudget/screens/sign_up.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: LoginView(),
+      home: LoginViewPage(),
     );
   }
 }
