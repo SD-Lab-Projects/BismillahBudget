@@ -56,7 +56,7 @@ class LoginView extends StatelessWidget {
                   keyboardType: TextInputType.phone,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   decoration: _buildInputDecoration("Password", Icons.lock),
-                 // validator: appValidator.validatePassword,
+                  validator: AppValidator.validatePassword,
                 ),
                 SizedBox(height: 40.0),
                 SizedBox(
@@ -67,12 +67,13 @@ class LoginView extends StatelessWidget {
                       backgroundColor: Color(0xFFF15900),
                     ),
                     onPressed: _submitForm,
-                    child: Text("Create", style: TextStyle(fontSize: 20)),
+                    child: Text("Login", style: TextStyle(fontSize: 20)),
                   ),
                 ),
                 SizedBox(height: 30.0),
                 TextButton(
                   onPressed: () {
+                    print("gfgfg");
                     Get.to(SignUpView());
                   },
                   child: Text(

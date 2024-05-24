@@ -1,6 +1,7 @@
 //import 'dart:nativewrappers/_internal/vm/lib/core_patch.dart';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SignUp_view extends StatelessWidget {
   SignUp_view({super.key});
@@ -127,7 +128,9 @@ class SignUp_view extends StatelessWidget {
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.yellow),
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.to(SignUp_view());
+                      },
                       child: Text("Create"))),
               SizedBox(
                 height: 20.0,
