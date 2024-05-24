@@ -1,18 +1,19 @@
-import 'package:bismillahbudget/Services/auth_serices.dart';
+
 import 'package:bismillahbudget/screens/login_page.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../Services/auth_serices.dart';
 import '../utility/Appvalidator.dart';
-class SignUpViewPage extends StatefulWidget{
+
+class SignUpViewPage extends StatefulWidget {
   SignUpViewPage({super.key});
   @override
   State<SignUpViewPage> createState() => _SignUpViewPageState();
-
 }
 
 class _SignUpViewPageState extends State<SignUpViewPage> {
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final _userNameController = TextEditingController();
   final _emailController = TextEditingController();
@@ -25,7 +26,7 @@ class _SignUpViewPageState extends State<SignUpViewPage> {
   Future<void> _submitForm(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
       setState(() {
-        isLoader=true;
+        isLoader = true;
       });
       var data = {
         "username": _userNameController.text,
@@ -34,13 +35,10 @@ class _SignUpViewPageState extends State<SignUpViewPage> {
         "password": _passwordController.text,
       };
 
-     await authService.createUser(data, context);
+      await authService.createUser(data, context);
       setState(() {
-        isLoader=false;
+        isLoader = false;
       });
-      //ScaffoldMessenger.of(context).showSnackBar(
-      //  const SnackBar(content: Text('Form Submitted successfully')),
-      //);
     }
   }
 
@@ -127,14 +125,15 @@ class _SignUpViewPageState extends State<SignUpViewPage> {
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.yellow),
                       onPressed: () {
-                        isLoader? print("Loading"): _submitForm(context);
+                        isLoader ? print("Loading") : _submitForm(context);
                       },
-                      child:
-                      isLoader? Center(child: CircularProgressIndicator() ):
-                      Text(
+                      child: isLoader
+                          ? Center(child: CircularProgressIndicator())
+                          : Text(
                         "Create",
                         style: TextStyle(
-                            fontSize: 25.0, fontWeight: FontWeight.bold),
+                            fontSize: 25.0,
+                            fontWeight: FontWeight.bold),
                       ))),
               SizedBox(
                 height: 10.0,
@@ -154,7 +153,7 @@ class _SignUpViewPageState extends State<SignUpViewPage> {
       ),
     );
   }
-        InputDecoration _buildInputDecoration(String label, IconData suffixIcon) {
+          InputDecoration _buildInputDecoration(String label, IconData suffixIcon) {
     return InputDecoration(
         fillColor: Color(0xAA494A59),
         enabledBorder: OutlineInputBorder(
