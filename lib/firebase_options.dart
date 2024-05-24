@@ -85,4 +85,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'bismillahbudget.appspot.com',
     measurementId: 'G-7HDMCH71WK',
   );
+
 }
