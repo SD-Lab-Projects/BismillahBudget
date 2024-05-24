@@ -1,16 +1,19 @@
-//import 'dart:nativewrappers/_internal/vm/lib/core_patch.dart';
-
+import 'package:bismillahbudget/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SignUp_view extends StatelessWidget {
-  SignUp_view({super.key});
+class SignUpView extends StatelessWidget {
+  SignUpView({super.key});
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  //get child => null;
-  Future<void> _submitForm() async {
+
+  Future<void> _submitForm(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
-      ScaffoldMessenger.of(_formKey.currentState! as BuildContext).showSnackBar(
-          const SnackBar(content: Text('Form Submitted successfully')));
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Form Submitted successfully')),
+      );
+      // Redirect to Login page after form submission
+      await Future.delayed(Duration(seconds: 2)); // Optional: add a delay to show the snackbar
+      Get.off(LoginView()); // Using Get.off to remove the SignUpView from the navigation stack
     }
   }
 
@@ -46,19 +49,17 @@ class SignUp_view extends StatelessWidget {
                 height: 16.0,
               ),
               TextFormField(
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-              TextFormField(
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 decoration: _buildInputDecoration("Username", Icons.person),
                 validator: (value) {
                   if (value!.isEmpty) {
-                    return 'please enter a username';
+                    return 'Please enter a username';
                   }
                   return null;
                 },
+                style: TextStyle(
+                  color: Colors.white,
+                ),
               ),
               SizedBox(
                 height: 16.0,
@@ -74,12 +75,11 @@ class SignUp_view extends StatelessWidget {
                     }
 
                     RegExp emailRegExp = RegExp(
-                        r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-                    );
+                        r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
                     if (!emailRegExp.hasMatch(value)) {
                       return 'Please enter a valid email';
                     }
-
+                    return null;
                   }),
               SizedBox(
                 height: 16.0,
@@ -94,8 +94,8 @@ class SignUp_view extends StatelessWidget {
                     return 'Please enter a phone number';
                   }
 
-                  if (value.length != 10) {
-                    return 'Please enter a 10 digit phone number';
+                  if (value.length != 11) {
+                    return 'Please enter an 11 digit phone number';
                   }
                   return null;
                 },
@@ -113,8 +113,8 @@ class SignUp_view extends StatelessWidget {
                     return 'Please enter a password';
                   }
 
-                  if (value.length != 10) {
-                    return 'Please enter a 10 digit phone number';
+                  if (value.length < 8) {
+                    return 'Password must be at least 8 characters long';
                   }
                   return null;
                 },
@@ -124,22 +124,28 @@ class SignUp_view extends StatelessWidget {
               ),
               SizedBox(
                   height: 50,
-                  width:double.infinity,
+                  width: double.infinity,
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.yellow),
                       onPressed: () {
-                        Get.to(SignUp_view());
+                        _submitForm(context);
                       },
-                      child: Text("Create"))),
+                      child: Text(
+                        "Create",
+                        style: TextStyle(
+                            fontSize: 25.0, fontWeight: FontWeight.bold),
+                      ))),
               SizedBox(
-                height: 20.0,
+                height: 10.0,
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(LoginView());
+                },
                 child: Text(
-                  "Log in",
-                  style: TextStyle(color: Color(0xFFF15900), fontSize: 28),
+                  "LOG IN",
+                  style: TextStyle(color: Color(0xFFF15900), fontSize: 25),
                 ),
               )
             ],
@@ -155,7 +161,7 @@ class SignUp_view extends StatelessWidget {
         enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Color(0x35949494))),
         focusedBorder:
-            OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+        OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
         filled: true,
         labelStyle: TextStyle(color: Color(0xFF949494)),
         labelText: label,
