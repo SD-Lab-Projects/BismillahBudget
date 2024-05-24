@@ -30,7 +30,7 @@ class LoginViewPage extends StatelessWidget {
                 children: [
                   SizedBox(height: 20),
                   Text(
-                    "Welcome Back",
+                    "Welcome",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 28,
@@ -72,6 +72,7 @@ class LoginViewPage extends StatelessWidget {
                       return null;
                     },
                   ),
+
                   SizedBox(height: 30),
                   SizedBox(
                     height: 50,
