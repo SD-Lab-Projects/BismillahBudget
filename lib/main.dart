@@ -1,10 +1,9 @@
-import 'package:bismillahbudget/screens/dashboard.dart';
 import 'package:bismillahbudget/screens/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'firebase_options.dart';
-import 'screens/Intro.dart';
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,12 +20,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Bismillah Budget',
-      theme: ThemeData(
-
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: WelcomePage(),
+      //theme: ThemeData(
+       // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+       // useMaterial3: true,
+      //),
+      debugShowCheckedModeBanner: false,
+      home: LoginViewPage(),
     );
   }
 }

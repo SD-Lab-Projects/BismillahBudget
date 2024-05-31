@@ -1,8 +1,11 @@
 import 'package:bismillahbudget/screens/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:bismillahbudget/screens/dashboard.dart';
+import 'package:bismillahbudget/screens/login_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 
-import '../screens/dashboard.dart';
+
 
 class AuthGate extends StatelessWidget {
   const AuthGate({super.key});
@@ -13,7 +16,7 @@ class AuthGate extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context,snapshot){
           if(!snapshot.hasData){
-            return LoginView();
+            return LoginViewPage();
           }
           return DashBoard();
         }

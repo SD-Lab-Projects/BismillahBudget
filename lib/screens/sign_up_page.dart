@@ -1,4 +1,5 @@
 
+import 'package:bismillahbudget/screens/dashboard.dart';
 import 'package:bismillahbudget/screens/login_page.dart';
 
 import 'package:flutter/material.dart';
@@ -14,10 +15,15 @@ class SignUpViewPage extends StatefulWidget {
 }
 
 class _SignUpViewPageState extends State<SignUpViewPage> {
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   final _userNameController = TextEditingController();
+
   final _emailController = TextEditingController();
+
   final _phoneController = TextEditingController();
+
   final _passwordController = TextEditingController();
 
   var authService = AuthServices();
@@ -36,6 +42,7 @@ class _SignUpViewPageState extends State<SignUpViewPage> {
       };
 
       await authService.createUser(data, context);
+      Get.to(DashBoard());
       setState(() {
         isLoader = false;
       });

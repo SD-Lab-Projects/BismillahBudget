@@ -1,16 +1,40 @@
+import 'package:bismillahbudget/screens/dashboard.dart';
 import 'package:bismillahbudget/screens/sign_up_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class LoginViewPage extends StatelessWidget {
+import '../Services/auth_serices.dart';
+
+class LoginViewPage extends StatefulWidget {
   LoginViewPage({super.key});
+
+  @override
+  State<LoginViewPage> createState() => _LoginViewPageState();
+}
+
+class _LoginViewPageState extends State<LoginViewPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  var isLoader=false;
+  var authService = AuthServices();
 
   Future<void> _submitForm(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Login successful')),
-      );
+      setState(() {
+        isLoader = true;
+      });
+      var data = {
+        "email": _emailController.text,
+        "password": _passwordController.text,
+      };
+
+      await authService.login(data, context);
+      Get.to(DashBoard());
+      setState(() {
+        isLoader = false;
+      });
     }
   }
 
@@ -47,6 +71,7 @@ class LoginViewPage extends StatelessWidget {
                   ),
                   SizedBox(height: 30),
                   TextFormField(
+                    controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
                     style: TextStyle(color: Colors.white),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -60,6 +85,7 @@ class LoginViewPage extends StatelessWidget {
                   ),
                   SizedBox(height: 20),
                   TextFormField(
+                    controller: _passwordController,
                     style: TextStyle(color: Colors.white),
                     keyboardType: TextInputType.visiblePassword,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -72,30 +98,25 @@ class LoginViewPage extends StatelessWidget {
                       return null;
                     },
                   ),
-
                   SizedBox(height: 30),
                   SizedBox(
-                    height: 50,
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFFF15900),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      onPressed: () {
-                        _submitForm(context);
-                      },
-                      child: Text(
-                        "Login",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
+                      height: 50,
+                      width: double.infinity,
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.orange),
+                          onPressed: () {
+
+                            isLoader ? print("Loading") : _submitForm(context);
+                          },
+                          child: isLoader
+                              ? Center(child: CircularProgressIndicator())
+                              : Text(
+                            "Login",
+                            style: TextStyle(
+                                fontSize: 25.0,
+                                fontWeight: FontWeight.bold),
+                          ))),
                   SizedBox(height: 20),
                   TextButton(
                     onPressed: () {
@@ -103,7 +124,7 @@ class LoginViewPage extends StatelessWidget {
                     },
                     child: Text(
                       "Don't have an account? Sign Up",
-                      style: TextStyle(color: Color(0xFFF15900), fontSize: 16),
+                      style: TextStyle(color: Colors.yellow, fontSize: 16),
                     ),
                   ),
                 ],
