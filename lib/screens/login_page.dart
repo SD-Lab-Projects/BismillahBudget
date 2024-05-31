@@ -31,7 +31,6 @@ class _LoginViewPageState extends State<LoginViewPage> {
       };
 
       await authService.login(data, context);
-      Get.to(DashBoard());
       setState(() {
         isLoader = false;
       });

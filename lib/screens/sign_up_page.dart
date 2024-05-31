@@ -42,7 +42,7 @@ class _SignUpViewPageState extends State<SignUpViewPage> {
       };
 
       await authService.createUser(data, context);
-      Get.to(DashBoard());
+      Get.to(LoginViewPage());
       setState(() {
         isLoader = false;
       });

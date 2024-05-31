@@ -1,3 +1,4 @@
+import 'package:bismillahbudget/screens/dashboard.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +10,10 @@ class AuthServices{
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: data['email'],
         password: data['password'],
+      );
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => DashBoard()),
       );
     } catch (e) {
       showDialog(
@@ -28,6 +33,10 @@ login(data,context) async {
     await FirebaseAuth.instance.signInWithEmailAndPassword(
       email: data['email'],
       password: data['password'],
+    );
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => DashBoard()),
     );
   } catch (e) {
     showDialog(
