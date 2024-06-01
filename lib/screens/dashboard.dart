@@ -7,6 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import 'Home_Screen.dart';
+import 'Transaction_Screen.dart';
+
 class DashBoard extends StatefulWidget {
   const DashBoard({super.key});
 
@@ -17,7 +20,11 @@ class DashBoard extends StatefulWidget {
 class _DashBoardState extends State<DashBoard> {
   var isLogoutLoading = false;
   int currentIndex = 0;
-  var pageViewList = [];
+  var pageViewList = [
+    HomeScreen(),
+    TransactionScreen(),
+
+  ];
 
   logOut() async {
     setState(() {
@@ -29,7 +36,8 @@ class _DashBoardState extends State<DashBoard> {
         .pushReplacement(MaterialPageRoute(builder: (context) => LoginView()));
 
     setState(() {
-      isLogoutLoading = true;
+     // isLogoutLoading = true;
+      isLogoutLoading = false;
     });
   }
 
@@ -57,7 +65,7 @@ class _DashBoardState extends State<DashBoard> {
         automaticallyImplyLeading: false,
       ),
       body: Text(
-        pageViewList[currentIndex],
+        pageViewList[currentIndex] as String,
       ),
     );
   }
