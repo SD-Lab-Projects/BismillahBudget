@@ -69,7 +69,7 @@ class LoginView extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFFF15900),
                     ),
-                    onPressed: (){
+                    onPressed: () {
                       Get.to(DashBoard());
                     },
                     child: Text("Login", style: TextStyle(fontSize: 20)),
@@ -227,7 +227,8 @@ class SignUpView extends StatelessWidget {
                       onPressed: () {
                         if (Form.of(context)!.validate()) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Form submitted successfully')),
+                            const SnackBar(
+                                content: Text('Form submitted successfully')),
                           );
                         }
                       },

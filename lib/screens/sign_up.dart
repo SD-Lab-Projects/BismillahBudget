@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 class SignUpView extends StatelessWidget {
   SignUpView({super.key});
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Future<void> _submitForm(BuildContext context) async {
@@ -12,8 +13,10 @@ class SignUpView extends StatelessWidget {
         const SnackBar(content: Text('Form Submitted successfully')),
       );
       // Redirect to Login page after form submission
-      await Future.delayed(Duration(seconds: 2)); // Optional: add a delay to show the snackbar
-      Get.off(LoginView()); // Using Get.off to remove the SignUpView from the navigation stack
+      await Future.delayed(
+          Duration(seconds: 2)); // Optional: add a delay to show the snackbar
+      Get.off(
+          LoginView()); // Using Get.off to remove the SignUpView from the navigation stack
     }
   }
 
@@ -161,7 +164,7 @@ class SignUpView extends StatelessWidget {
         enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Color(0x35949494))),
         focusedBorder:
-        OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+            OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
         filled: true,
         labelStyle: TextStyle(color: Color(0xFF949494)),
         labelText: label,

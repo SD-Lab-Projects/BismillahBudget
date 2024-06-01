@@ -1,4 +1,3 @@
-
 import 'package:bismillahbudget/screens/dashboard.dart';
 import 'package:bismillahbudget/screens/login_page.dart';
 
@@ -10,12 +9,12 @@ import '../utility/Appvalidator.dart';
 
 class SignUpViewPage extends StatefulWidget {
   SignUpViewPage({super.key});
+
   @override
   State<SignUpViewPage> createState() => _SignUpViewPageState();
 }
 
 class _SignUpViewPageState extends State<SignUpViewPage> {
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final _userNameController = TextEditingController();
@@ -137,11 +136,10 @@ class _SignUpViewPageState extends State<SignUpViewPage> {
                       child: isLoader
                           ? Center(child: CircularProgressIndicator())
                           : Text(
-                        "Create",
-                        style: TextStyle(
-                            fontSize: 25.0,
-                            fontWeight: FontWeight.bold),
-                      ))),
+                              "Create",
+                              style: TextStyle(
+                                  fontSize: 25.0, fontWeight: FontWeight.bold),
+                            ))),
               SizedBox(
                 height: 10.0,
               ),
@@ -160,13 +158,14 @@ class _SignUpViewPageState extends State<SignUpViewPage> {
       ),
     );
   }
-          InputDecoration _buildInputDecoration(String label, IconData suffixIcon) {
+
+  InputDecoration _buildInputDecoration(String label, IconData suffixIcon) {
     return InputDecoration(
         fillColor: Color(0xAA494A59),
         enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Color(0x35949494))),
         focusedBorder:
-        OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+            OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
         filled: true,
         labelStyle: TextStyle(color: Color(0xFF949494)),
         labelText: label,

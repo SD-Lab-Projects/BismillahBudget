@@ -1,12 +1,13 @@
+import 'package:bismillahbudget/Widgets/Navbar.dart';
 import 'package:bismillahbudget/screens/login_page.dart';
+import 'package:bismillahbudget/screens/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-
-class DashBoard extends StatefulWidget{
+class DashBoard extends StatefulWidget {
   const DashBoard({super.key});
 
   @override
@@ -14,35 +15,49 @@ class DashBoard extends StatefulWidget{
 }
 
 class _DashBoardState extends State<DashBoard> {
-  var isLogoutLoading =false;
+  var isLogoutLoading = false;
+  int currentIndex = 0;
+  var pageViewList = [];
+
   logOut() async {
     setState(() {
-      isLogoutLoading =true;
+      isLogoutLoading = true;
     });
     await FirebaseAuth.instance.signOut();
-    Get.to(LoginViewPage());
+    // Get.to(LoginViewPage());
+    Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(builder: (context) => LoginView()));
 
     setState(() {
-      isLogoutLoading =true;
+      isLogoutLoading = true;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: Navbar(
+        selectedIndex: currentIndex,
+        onDestinationSelected: (int value) {
+          setState(() {
+            currentIndex = value;
+          });
+        },
+      ),
       appBar: AppBar(
         actions: [
           IconButton(
-              onPressed: (){
+              onPressed: () {
                 logOut();
-          },
-              icon:
-              isLogoutLoading ? CircularProgressIndicator():
-              Icon(Icons.exit_to_app))
+              },
+              icon: isLogoutLoading
+                  ? CircularProgressIndicator()
+                  : Icon(Icons.exit_to_app))
         ],
         automaticallyImplyLeading: false,
       ),
-      body: Text("Hello",
+      body: Text(
+        pageViewList[currentIndex],
       ),
     );
   }

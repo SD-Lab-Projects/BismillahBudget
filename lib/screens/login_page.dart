@@ -17,7 +17,7 @@ class _LoginViewPageState extends State<LoginViewPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  var isLoader=false;
+  var isLoader = false;
   var authService = AuthServices();
 
   Future<void> _submitForm(BuildContext context) async {
@@ -105,17 +105,16 @@ class _LoginViewPageState extends State<LoginViewPage> {
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.orange),
                           onPressed: () {
-
                             isLoader ? print("Loading") : _submitForm(context);
                           },
                           child: isLoader
                               ? Center(child: CircularProgressIndicator())
                               : Text(
-                            "Login",
-                            style: TextStyle(
-                                fontSize: 25.0,
-                                fontWeight: FontWeight.bold),
-                          ))),
+                                  "Login",
+                                  style: TextStyle(
+                                      fontSize: 25.0,
+                                      fontWeight: FontWeight.bold),
+                                ))),
                   SizedBox(height: 20),
                   TextButton(
                     onPressed: () {
@@ -156,5 +155,3 @@ class _LoginViewPageState extends State<LoginViewPage> {
     );
   }
 }
-
-
