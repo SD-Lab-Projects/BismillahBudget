@@ -8,11 +8,7 @@ class TranSactionsCard extends StatelessWidget {
 
   {
 
-  super
-
-      .
-
-  key
+  super.key
 }
 
 @override
