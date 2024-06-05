@@ -29,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  logOut() async {
+   logOut() async {
     setState(() {
       isLogoutLoading = true;
     });
