@@ -1,7 +1,19 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/materlal.dart';
 
 class TranSactionsCard extends StatelessWidget {
-  const TranSactionsCard({super.key};
+  const TranSactionsCard
+
+  (
+
+  {
+
+  super
+
+      .
+
+  key
+}
 
 @override
 Widget build(BuildContext context) {
@@ -41,12 +53,12 @@ Widget build(BuildContext context) {
   Expanded(child: Text("Car Rent Oct 2024"),
   ]
   Text(
-      "৳ 8000",
-    style:TextStyle(color: Colors.green),
+  "৳ 8000",
+  style:TextStyle(color: Colors.green),
   ) // Text
-      ],
-   ),//Row
-      subtitle:Column(
+  ],
+  ),//Row
+  subtitle:Column(
   mainAxisAlignment: MainAxisAlignment.start,
   crossAxisAlignment: CrossAxisAlignment.start,
   children:
@@ -57,13 +69,21 @@ Widget build(BuildContext context) {
   ],), // Row
 
   Text("25 oct 4:51 PM", style: TextStyle(color: Color.grey),)
-])//Row
+  ])//Row
 
- ]), // Column
+  ]), // Column
   );//listTile
   })//ListView.builder
-  ],
-  ), // column
-  ),//padding
-  }
-}
+
+
+  @override
+  Widget build(BuildContext context) {
+  // TODO: implement build
+  throw UnimplementedError();
+  }]
+  ,
+  )
+  , // column
+  )
+  , //padding
+}}
