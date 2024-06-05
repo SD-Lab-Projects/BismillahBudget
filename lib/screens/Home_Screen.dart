@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import '../Widgets/herocard.dart';
 import 'login_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -29,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-   logOut() async {
+  logOut() async {
     setState(() {
       isLogoutLoading = true;
     });
@@ -60,77 +61,34 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
           automaticallyImplyLeading: false,
         ),
-        body: Container(
-          width: double.infinity,
-          color: Colors.blue.shade900,
-          child: Column(
-            children: [
-              HeroCard(),
-            ],
+        body: Padding(
+          padding: const EdgeInsets.all(15),
+          child: Container(
+            width: double.infinity,
+            color: Colors.blue.shade900,
+            child: Column(
+              children: [
+                HeroCard(),
+                Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: Row(
+                    children: [
+                      Text(
+                        "Recent Transaction",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.w600),
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ));
   }
 }
 
-class HeroCard extends StatelessWidget {
-  const HeroCard({
-    super.key,
-  });
 
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(15),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Total Balance",
-                style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.white,
-                    height: 1.2,
-                    fontWeight: FontWeight.w600),
-              ),
-              Text(
-                "58500taka",
-                style: TextStyle(
-                    fontSize: 50,
-                    color: Colors.white,
-                    height: 1.2,
-                    fontWeight: FontWeight.w600),
-              ),
-            ],
-          ),
-          Container(
-            padding: EdgeInsets.only(top: 30, bottom: 10, left: 10, right: 10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30), topRight: Radius.circular(30)),
-              color: Colors.white,
-            ),
-            child: Row(
-              children: [
-                CardOne(
-                  color: Colors.green,
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                CardOne(
-                  color: Colors.red,
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
 
 class CardOne extends StatelessWidget {
   const CardOne({
