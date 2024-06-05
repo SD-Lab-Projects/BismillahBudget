@@ -1,5 +1,4 @@
 import 'package:bismillahbudget/Widgets/Navbar.dart';
-import 'package:bismillahbudget/screens/login_page.dart';
 import 'package:bismillahbudget/screens/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -36,7 +35,7 @@ class _DashBoardState extends State<DashBoard> {
         .pushReplacement(MaterialPageRoute(builder: (context) => LoginView()));
 
     setState(() {
-     // isLogoutLoading = true;
+      // isLogoutLoading = true;
       isLogoutLoading = false;
     });
   }
@@ -55,18 +54,17 @@ class _DashBoardState extends State<DashBoard> {
       appBar: AppBar(
         actions: [
           IconButton(
-              onPressed: () {
-                logOut();
-              },
-              icon: isLogoutLoading
-                  ? CircularProgressIndicator()
-                  : Icon(Icons.exit_to_app))
+            onPressed: () {
+              logOut();
+            },
+            icon: isLogoutLoading
+                ? CircularProgressIndicator()
+                : Icon(Icons.exit_to_app),
+          )
         ],
         automaticallyImplyLeading: false,
       ),
-      body: Text(
-        pageViewList[currentIndex] as String,
-      ),
+      body: pageViewList[currentIndex],
     );
   }
 }
