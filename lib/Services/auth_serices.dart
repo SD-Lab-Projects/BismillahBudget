@@ -1,4 +1,5 @@
 import 'package:bismillahbudget/screens/dashboard.dart';
+import 'package:bismillahbudget/screens/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,7 @@ class AuthServices{
       );
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => DashBoard()),
+        MaterialPageRoute(builder: (context) => LoginViewPage()),
       );
     } catch (e) {
       showDialog(
