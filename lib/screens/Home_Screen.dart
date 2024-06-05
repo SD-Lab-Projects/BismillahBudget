@@ -49,95 +49,36 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-        appBar: AppBar(
-          actions: [
-            IconButton(
-                onPressed: () {
-                  logOut();
-                },
-                icon: isLogoutLoading
-                    ? CircularProgressIndicator()
-                    : Icon(Icons.exit_to_app))
-          ],
-          automaticallyImplyLeading: false,
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(15),
-          child: Container(
-            width: double.infinity,
-            color: Colors.blue.shade900,
-            child: Column(
+      appBar: AppBar(
+        actions: [
+          IconButton(
+              onPressed: () {
+                logOut();
+              },
+              icon: isLogoutLoading
+                  ? CircularProgressIndicator()
+                  : Icon(Icons.exit_to_app))
+        ],
+        automaticallyImplyLeading: false,
+      ),
+      body: Column(
+        children: [
+          HeroCard(),
+          Padding(
+            padding: const EdgeInsets.all(15),
+            child: Row(
               children: [
-                HeroCard(),
-                Padding(
-                  padding: const EdgeInsets.all(15),
-                  child: Row(
-                    children: [
-                      Text(
-                        "Recent Transaction",
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.w600),
-                      )
-                    ],
-                  ),
+                Text(
+                  "Recent Transaction",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
                 )
               ],
             ),
-          ),
-        ));
-  }
-}
-
-
-
-class CardOne extends StatelessWidget {
-  const CardOne({
-    super.key,
-    required this.color,
-  });
-
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        decoration: BoxDecoration(
-          color: color.withOpacity(0.1),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Row(
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Credit",
-                    style: TextStyle(color: color, fontSize: 14),
-                  ),
-                  Text(
-                    "58500taka",
-                    style: TextStyle(
-                        color: color,
-                        fontSize: 30,
-                        fontWeight: FontWeight.w600),
-                  ),
-                ],
-              ),
-              Spacer(),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Icon(
-                  Icons.arrow_upward_outlined,
-                  color: color,
-                ),
-              )
-            ],
-          ),
-        ),
+          )
+        ],
       ),
     );
   }
 }
+
+
