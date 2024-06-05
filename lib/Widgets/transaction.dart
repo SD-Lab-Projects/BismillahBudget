@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/materlal.dart';
 
 class TranSactionsCard extends StatelessWidget {
