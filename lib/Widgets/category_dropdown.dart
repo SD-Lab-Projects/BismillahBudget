@@ -22,6 +22,7 @@ class CategoryDropdown extends StatelessWidget {
                   e['icon'],
                   color: Colors.black54,
                 ),
+                SizedBox(width: 10,),
                 Text(e['name'], style: TextStyle(
                   color: Colors.black45
                 ),),

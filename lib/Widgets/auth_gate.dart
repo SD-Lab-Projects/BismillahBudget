@@ -1,4 +1,5 @@
 import 'package:bismillahbudget/screens/Home_Screen.dart';
+import 'package:bismillahbudget/screens/Intro.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:bismillahbudget/screens/dashboard.dart';
 import 'package:bismillahbudget/screens/login_page.dart';
