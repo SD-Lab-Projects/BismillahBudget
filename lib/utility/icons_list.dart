@@ -21,7 +21,31 @@ class AppIcons {
     },
     {
       "name": "Electricity",
-      "icon": FontAwesomeIcons.current,
+      "icon": FontAwesomeIcons.bolt,
+    },
+    {
+      "name": "Water",
+      "icon": FontAwesomeIcons.water,
+    },
+    {
+      "name": "Rent",
+      "icon": FontAwesomeIcons.home,
+    },
+    {
+      "name": "Phone Bill",
+      "icon": FontAwesomeIcons.phone,
+    },
+    {
+      "name": "Dinnig Out",
+      "icon": FontAwesomeIcons.utensils,
+    },
+    {
+      "name": "Entertainment",
+      "icon": FontAwesomeIcons.film,
+    },
+    {
+      "name": "Healthcare",
+      "icon": FontAwesomeIcons.medkit,
     },
     {
       "name": "Transportation",
@@ -40,12 +64,16 @@ class AppIcons {
       "icon": FontAwesomeIcons.graduationCap,
     },
     {
-      "name": "Water",
-      "icon": FontAwesomeIcons.water,
-    },
-    {
       "name": "Others",
       "icon": FontAwesomeIcons.cartPlus,
     },
   ];
+
+  IconData getExpenseCategoryIcons(String categoryName){
+    final category = homeExpensesCategories.firstWhere(
+            (category)=>category['name'] == categoryName,
+            orElse: ()=> {"icon" : FontAwesomeIcons.shoppingCart});
+            return category['icon'];
+
+  }
 }

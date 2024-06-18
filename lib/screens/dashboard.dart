@@ -1,11 +1,7 @@
 import 'package:bismillahbudget/Widgets/Navbar.dart';
-import 'package:bismillahbudget/screens/login_screen.dart';
+import 'package:bismillahbudget/screens/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
 import 'Home_Screen.dart';
 import 'Transaction_Screen.dart';
 
@@ -19,10 +15,9 @@ class DashBoard extends StatefulWidget {
 class _DashBoardState extends State<DashBoard> {
   var isLogoutLoading = false;
   int currentIndex = 0;
-  var pageViewList = [
-    HomeScreen(),
-    TransactionScreen(),
-
+  final pageViewList = [
+    const HomeScreen(),
+    const TransactionScreen(),
   ];
 
   logOut() async {
@@ -30,12 +25,9 @@ class _DashBoardState extends State<DashBoard> {
       isLogoutLoading = true;
     });
     await FirebaseAuth.instance.signOut();
-    // Get.to(LoginViewPage());
     Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (context) => LoginView()));
-
+        .pushReplacement(MaterialPageRoute(builder: (context) => LoginViewPage()));
     setState(() {
-      // isLogoutLoading = true;
       isLogoutLoading = false;
     });
   }
@@ -51,19 +43,17 @@ class _DashBoardState extends State<DashBoard> {
           });
         },
       ),
-      appBar: AppBar(
+      /*appBar: AppBar(
         actions: [
           IconButton(
-            onPressed: () {
-              logOut();
-            },
+            onPressed: logOut,
             icon: isLogoutLoading
-                ? CircularProgressIndicator()
-                : Icon(Icons.exit_to_app),
+                ? Center(child: CircularProgressIndicator())
+                : const Icon(Icons.exit_to_app),
           )
         ],
         automaticallyImplyLeading: false,
-      ),
+      ),*/
       body: pageViewList[currentIndex],
     );
   }

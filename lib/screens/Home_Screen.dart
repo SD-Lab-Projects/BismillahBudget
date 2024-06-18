@@ -1,12 +1,13 @@
+import 'package:bismillahbudget/Widgets/add_transactions.dart';
+import 'package:bismillahbudget/Widgets/transactions_cards.dart';
+import 'package:bismillahbudget/screens/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../Widgets/herocard.dart';
-import 'login_screen.dart';
+
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key});
-
-  var isLogoutLoading = false;
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -15,70 +16,55 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   var isLogoutLoading = false;
 
-  logout() async {
-    setState(() {
-      isLogoutLoading = true;
-    });
-    await FirebaseAuth.instance.signOut();
-    // Get.to(LoginViewPage());
-    Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (context) => LoginView()));
-
-    setState(() {
-      // isLogoutLoading = true;
-      isLogoutLoading = false;
-    });
-  }
-
   logOut() async {
     setState(() {
       isLogoutLoading = true;
     });
     await FirebaseAuth.instance.signOut();
-    // Get.to(LoginViewPage());
     Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (context) => LoginView()));
+        .pushReplacement(MaterialPageRoute(builder: (context) => LoginViewPage()));
 
     setState(() {
-      // isLogoutLoading = true;
       isLogoutLoading = false;
     });
   }
 
+  _dialoBuilder(BuildContext context){
+    return showDialog(context: context, builder: (context){
+      return AlertDialog(
+        content: AddTransactionsForm(),
+      );
+    });
+  }
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.blue.shade900,
+        onPressed:((){
+          _dialoBuilder(context);
+        }),
+      child: Icon(Icons.add,color: Colors.white),
+      ),
       appBar: AppBar(
+        backgroundColor: Colors.blue.shade900 ,
         actions: [
           IconButton(
               onPressed: () {
                 logOut();
               },
               icon: isLogoutLoading
-                  ? CircularProgressIndicator()
-                  : Icon(Icons.exit_to_app))
+                  ? Center(child: CircularProgressIndicator())
+                  : Icon(Icons.exit_to_app, color: Colors.white,))
         ],
         automaticallyImplyLeading: false,
       ),
       body: Column(
         children: [
           HeroCard(),
-          Padding(
-            padding: const EdgeInsets.all(15),
-            child: Row(
-              children: [
-                Text(
-                  "Recent Transaction",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-                )
-              ],
-            ),
-          )
+          TransactionsCard(),
         ],
       ),
     );
   }
 }
-
-

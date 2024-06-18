@@ -13,29 +13,31 @@ class HeroCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Total Balance",
-                style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.white,
-                    height: 1.2,
-                    fontWeight: FontWeight.w600),
-              ),
-              Text(
-                "58500taka",
-                style: TextStyle(
-                    fontSize: 50,
-                    color: Colors.white,
-                    height: 1.2,
-                    fontWeight: FontWeight.w600),
-              ),
-            ],
+          SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Total Balance",
+                  style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.white,
+                      height: 1.2,
+                      fontWeight: FontWeight.w600),
+                ),
+                Text(
+                  "৳58500",
+                  style: TextStyle(
+                      fontSize: 50,
+                      color: Colors.white,
+                      height: 1.2,
+                      fontWeight: FontWeight.w600),
+                ),
+              ],
+            ),
           ),
           Container(
-            padding: EdgeInsets.only(top: 30, bottom: 10, left: 10, right: 10),
+            padding: EdgeInsets.only(top:30, bottom: 10, left: 10, right: 10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(30), topRight: Radius.circular(30)),
@@ -81,21 +83,23 @@ class CardOne extends StatelessWidget {
           padding: const EdgeInsets.all(10),
           child: Row(
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Credit",
-                    style: TextStyle(color: color, fontSize: 14),
-                  ),
-                  Text(
-                    "58500taka",
-                    style: TextStyle(
-                        color: color,
-                        fontSize: 30,
-                        fontWeight: FontWeight.w600),
-                  ),
-                ],
+              SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Credit",
+                      style: TextStyle(color: color, fontSize: 14),
+                    ),
+                    Text(
+                      "৳58500",
+                      style: TextStyle(
+                          color: color,
+                          fontSize: 30,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ],
+                ),
               ),
               Spacer(),
               Padding(

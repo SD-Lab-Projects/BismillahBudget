@@ -1,10 +1,13 @@
+import 'package:bismillahbudget/utility/icons_list.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class TransactionsCard extends StatelessWidget {
-  const TransactionsCard({
+  TransactionsCard({
     Key? key,
   }) : super(key: key);
 
+  var appIcons = AppIcons();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -25,7 +28,7 @@ class TransactionsCard extends StatelessWidget {
             physics: NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
               return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
+                padding: const EdgeInsets.symmetric(vertical: 8),
                 child: Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -40,9 +43,28 @@ class TransactionsCard extends StatelessWidget {
                     ],
                   ),
                   child: ListTile(
+                    minVerticalPadding: 10,
+                    contentPadding: EdgeInsets.symmetric(horizontal: 10,vertical: 0),
+                    leading: Container(
+                      width: 70,
+                      height: 100,
+                      child: Container(width: 30,
+                        height: 30,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: Colors.green.withOpacity(0.2),
+                      
+                          ),
+                        child: Center(
+                          child: FaIcon(
+                              appIcons.getExpenseCategoryIcons('home')
+                          ),
+                        ),
+                      ),
+                    ),
                     title: Row(
                       children: [
-                        Expanded(child: Text("Car Rent Oct 2024")),
+                        Expanded(child: Text("Car Rent Feb 2024")),
                         Text(
                           "৳ 8000",
                           style: TextStyle(color: Colors.green),
@@ -60,7 +82,7 @@ class TransactionsCard extends StatelessWidget {
                             Text("৳ 525", style: TextStyle(color: Colors.grey, fontSize: 13)),
                           ],
                         ),
-                        Text("25 Oct 4:51 PM", style: TextStyle(color: Colors.grey)),
+                        Text("25 Feb 4:51 PM", style: TextStyle(color: Colors.grey)),
                       ],
                     ),
                   ),
