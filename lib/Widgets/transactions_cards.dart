@@ -111,7 +111,7 @@ class TransactionCard extends StatelessWidget {
           ),
           title: Row(
             children: [
-              Expanded(child: Text("Car Rent Feb 2024")),
+              Expanded(child: Text("Car Rent Jan 2024")),
               Text(
                 "৳ 8000",
                 style: TextStyle(color: Colors.green),

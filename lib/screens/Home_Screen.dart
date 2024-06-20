@@ -59,11 +59,13 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
         automaticallyImplyLeading: false,
       ),
-      body: Column(
-        children: [
-          HeroCard(userId: userId,),
-          TransactionsCard(),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            HeroCard(userId: userId,),
+            TransactionsCard(),
+          ],
+        ),
       ),
     );
   }
