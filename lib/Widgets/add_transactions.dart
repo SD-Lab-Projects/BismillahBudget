@@ -53,7 +53,7 @@ class _AddTransactionsFormState extends State<AddTransactionsForm> {
         totalCredit+=amount;
       }else{
         remainingAmount-=amount;
-        totalCredit-=amount;
+        totalDebit+=amount;
       }
 
       await FirebaseFirestore.instance
@@ -77,8 +77,16 @@ class _AddTransactionsFormState extends State<AddTransactionsForm> {
         "remainingAmount": remainingAmount,
         "monthyear":monthyear,
         "category":category,
+      };
 
-      }
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user!.uid)
+          .collection("transactions")
+          .doc(id)
+          .set(data);
+
+      Navigator.pop(context);
 
       setState(() {
         isLoader = false;
