@@ -36,6 +36,8 @@ dependencies:
   cloud_firestore: ^4.17.4
   flutter_svg : '^2.0.10+1'
   font_awesome_flutter: ^10.7.0
+  uuid: ^4.4.0
+  intl: ^0.19.0
 
 
   # The following adds the Cupertino Icons font to your application.

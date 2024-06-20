@@ -1,4 +1,3 @@
-import 'package:bismillahbudget/screens/dashboard.dart';
 import 'package:bismillahbudget/screens/login_page.dart';
 
 import 'package:flutter/material.dart';
