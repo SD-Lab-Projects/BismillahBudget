@@ -21,10 +21,15 @@ class _CategoryListState extends State<CategoryList> {
   @override
   void initState() {
     super.initState();
+    setState((){
+      categorylist= appIcons.homeExpensescategories;
+      categorylist.insert(0, addCat);
+    });
+
   }
 
-  void scrollToSelectedMonth() {
-    // Assuming you have a list of months and a currentMonth variable
+  /*void scrollToSelectedMonth() {
+     Assuming you have a list of months and a currentMonth variable
     final selectedMonthIndex = months.indexOf(currentMonth);
     if (selectedMonthIndex != -1) {
       final scrollOffset = (selectedMonthIndex * 100.0) - 170;
@@ -34,16 +39,12 @@ class _CategoryListState extends State<CategoryList> {
         curve: Curves.ease,
       );
     }
-  }
+  }*/
 
-  var addCat = {
-    "name": "all",
-    "icon": FontAwesomeIcons.cartPlus,//this method created for new package
-  };
+
 
   @override
   Widget build(BuildContext context) {
-    appIcons.homeExpensesCategories.insert(0, addCat);
     return Container(
       height: 45,
       child: ListView.builder(
@@ -51,13 +52,13 @@ class _CategoryListState extends State<CategoryList> {
         itemCount: appIcons.homeExpensesCategories.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          var data = appIcons.homeExpensesCategories[index];
+          var data = categories[index];
           return GestureDetector(
             onTap: () {
               setState(() {
                 currentCategory = data['name'];
                 widget.onChanged(data['name']);
-                scrollToSelectedMonth();
+
               });
             },
             child: Container(
