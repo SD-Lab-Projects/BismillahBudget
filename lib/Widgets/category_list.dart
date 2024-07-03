@@ -3,9 +3,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../utility/icons_list.dart';
 
-
 class CategoryList extends StatefulWidget {
-  const CategoryList({super.key, required this.onChanged});
+  const CategoryList({Key? key, required this.onChanged}) : super(key: key);
+
   final ValueChanged<String?> onChanged;
 
   @override
@@ -14,34 +14,30 @@ class CategoryList extends StatefulWidget {
 
 class _CategoryListState extends State<CategoryList> {
   String currentCategory = "";
-
-  final scrollController = ScrollController();
-  var appIcons = AppIcons();
+  late ScrollController scrollController;
+  late AppIcons appIcons;
 
   @override
   void initState() {
     super.initState();
-    setState((){
-      categorylist= appIcons.homeExpensescategories;
-      categorylist.insert(0, addCat);
-    });
-
+    scrollController = ScrollController();
+    appIcons = AppIcons();
+    addDefaultCategory();
   }
 
-  /*void scrollToSelectedMonth() {
-     Assuming you have a list of months and a currentMonth variable
-    final selectedMonthIndex = months.indexOf(currentMonth);
-    if (selectedMonthIndex != -1) {
-      final scrollOffset = (selectedMonthIndex * 100.0) - 170;
-      scrollController.animateTo(
-        scrollOffset,
-        duration: const Duration(milliseconds: 500),
-        curve: Curves.ease,
-      );
-    }
-  }*/
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
 
-
+  void addDefaultCategory() {
+    var addCat = {
+      "name": "all",
+      "icon": FontAwesomeIcons.cartPlus,
+    };
+    appIcons.homeExpensesCategories.insert(0, addCat);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,19 +48,18 @@ class _CategoryListState extends State<CategoryList> {
         itemCount: appIcons.homeExpensesCategories.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          var data = categories[index];
+          var data = appIcons.homeExpensesCategories[index];
           return GestureDetector(
             onTap: () {
               setState(() {
                 currentCategory = data['name'];
                 widget.onChanged(data['name']);
-
               });
             },
             child: Container(
-              width: 80,
-              margin: const EdgeInsets.all(6),
-              padding: const EdgeInsets.only(left: 10, right: 10),
+              width: 130,
+              margin: const EdgeInsets.all(4),
+              padding: const EdgeInsets.symmetric(horizontal: 5),
               decoration: BoxDecoration(
                 color: currentCategory == data['name']
                     ? Colors.blue.shade900
@@ -73,19 +68,18 @@ class _CategoryListState extends State<CategoryList> {
               ),
               child: Center(
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
-                      data['icon'],
-                      size: 15,
+                      data['icon'] as IconData,
+                      size: 10,
                       color: currentCategory == data['name']
                           ? Colors.white
                           : Colors.blue.shade900,
                     ),
-                    const SizedBox(
-                      width: 10,
-                    ),
+                    const SizedBox(width: 10),
                     Text(
-                      data['name'],
+                      data['name'] as String,
                       style: TextStyle(
                         color: currentCategory == data['name']
                             ? Colors.white

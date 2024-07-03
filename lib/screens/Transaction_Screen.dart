@@ -1,4 +1,5 @@
 
+import 'package:bismillahbudget/Widgets/tab_bar_view.dart';
 import 'package:flutter/material.dart';
 
 import '../Widgets/category_list.dart';
@@ -25,7 +26,8 @@ class TransactionScreen extends StatelessWidget {
           ), //TimeLineMonth
           CategoryList(
             onChanged: (String? value) {},
-          ), //CategoryList
+          ),
+          TypeBar(),
         ],
       ), // Column
     ); // Scaffold
