@@ -1,5 +1,6 @@
 
 import 'package:bismillahbudget/Widgets/tab_bar_view.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../Widgets/category_list.dart';
@@ -7,6 +8,10 @@ import '../Widgets/time_line_month.dart';
 
 class TransactionScreen extends StatelessWidget {
   const TransactionScreen({super.key});
+
+  get category => 'Null';
+
+  get monthYear => 'Null';
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +32,10 @@ class TransactionScreen extends StatelessWidget {
           CategoryList(
             onChanged: (String? value) {},
           ),
-          TypeBar(),
+          TypeBar(
+            category:category ,
+            monthYear: monthYear,
+          ),
         ],
       ), // Column
     ); // Scaffold
