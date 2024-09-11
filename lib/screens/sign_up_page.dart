@@ -1,5 +1,5 @@
 import 'package:bismillahbudget/screens/login_page.dart';
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -7,21 +7,16 @@ import '../Services/auth_serices.dart';
 import '../utility/Appvalidator.dart';
 
 class SignUpViewPage extends StatefulWidget {
-  SignUpViewPage({super.key});
-
   @override
-  State<SignUpViewPage> createState() => _SignUpViewPageState();
+  _SignUpViewPageState createState() => _SignUpViewPageState();
 }
 
 class _SignUpViewPageState extends State<SignUpViewPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final _userNameController = TextEditingController();
-
   final _emailController = TextEditingController();
-
   final _phoneController = TextEditingController();
-
   final _passwordController = TextEditingController();
 
   var authService = AuthServices();
@@ -38,10 +33,9 @@ class _SignUpViewPageState extends State<SignUpViewPage> {
         "email": _emailController.text,
         "phone": _phoneController.text,
         "password": _passwordController.text,
-        'remainingAmount':0,
-        'totalCredit':0,
-        'totalDebit':0
-
+        'remainingAmount': 0,
+        'totalCredit': 0,
+        'totalDebit': 0,
       };
 
       await authService.createUser(data, context);
@@ -49,47 +43,66 @@ class _SignUpViewPageState extends State<SignUpViewPage> {
       setState(() {
         isLoader = false;
       });
+
+      _showSuccessDialog(context);
     }
+  }
+
+  void _showSuccessDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Sign Up Successful"),
+          content: Text("Your account has been created successfully."),
+          actions: <Widget>[
+            TextButton(
+              child: Text("OK"),
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+                Get.to(LoginViewPage()); // Redirect to login page
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        backgroundColor: Color(0xFF252634),
+        backgroundColor: Colors.blue,
+        automaticallyImplyLeading: false,
       ),
-      backgroundColor: Color(0xFF252634),
+      resizeToAvoidBottomInset: false,
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
           child: Column(
-            children: [
-              SizedBox(
-                height: 80.0,
-              ),
-              SizedBox(
-                width: 250,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                alignment: Alignment.center,
+                padding: EdgeInsets.fromLTRB(15.0, 75.0, 0.0, 0.0),
                 child: Text(
-                  "Create new account",
-                  textAlign: TextAlign.center,
+                  'Sign Up',
                   style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 28,
+                      fontFamily: 'Montserrat',
+                      fontSize: 50.0,
                       fontWeight: FontWeight.bold),
                 ),
               ),
-              SizedBox(
-                height: 16.0,
-              ),
+              SizedBox(height: 35.0),
               TextFormField(
                 controller: _userNameController,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 decoration: _buildInputDecoration("Username", Icons.person),
                 validator: AppValidator.validateUsername,
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Colors.black,
                 ),
               ),
               SizedBox(
@@ -98,7 +111,7 @@ class _SignUpViewPageState extends State<SignUpViewPage> {
               TextFormField(
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.black),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 decoration: _buildInputDecoration("Email", Icons.email),
                 validator: AppValidator.validateEmail,
@@ -109,7 +122,7 @@ class _SignUpViewPageState extends State<SignUpViewPage> {
               TextFormField(
                 controller: _phoneController,
                 keyboardType: TextInputType.phone,
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.black),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 decoration: _buildInputDecoration("Phone", Icons.call),
                 validator: AppValidator.validatePhone,
@@ -120,42 +133,62 @@ class _SignUpViewPageState extends State<SignUpViewPage> {
               TextFormField(
                 controller: _passwordController,
                 keyboardType: TextInputType.visiblePassword,
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.black),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 decoration: _buildInputDecoration("Password", Icons.lock),
                 validator: AppValidator.validatePassword,
               ),
+              SizedBox(height: 40.0),
               SizedBox(
-                height: 40.0,
-              ),
-              SizedBox(
-                  height: 50,
-                  width: double.infinity,
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.yellow),
-                      onPressed: () {
-                        isLoader ? print("Loading") : _submitForm(context);
-                      },
-                      child: isLoader
-                          ? Center(child: CircularProgressIndicator())
-                          : Text(
-                              "Create",
-                              style: TextStyle(
-                                  fontSize: 25.0, fontWeight: FontWeight.bold),
-                            ))),
-              SizedBox(
-                height: 10.0,
-              ),
-              TextButton(
-                onPressed: () {
-                  Get.to(LoginViewPage());
-                },
-                child: Text(
-                  "LOG IN",
-                  style: TextStyle(color: Color(0xFFF15900), fontSize: 25),
+                height: 50,
+                width: double.infinity,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                  ),
+                  onPressed: () {
+                    isLoader ? print("Loading") : _submitForm(context);
+                  },
+                  child: isLoader
+                      ? Center(child: CircularProgressIndicator())
+                      : Text(
+                          "REGISTER",
+                          style: TextStyle(
+                              fontSize: 25.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
                 ),
-              )
+              ),
+              SizedBox(height: 10.0),
+              Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      'Already have an account ?',
+                      style: TextStyle(fontFamily: 'Montserrat'),
+                    ),
+                    SizedBox(width: 5.0),
+                    InkWell(
+                      onTap: () {
+                        Get.to(LoginViewPage());
+                      },
+                      child: Text(
+                        'Login',
+                        style: TextStyle(
+                            color: Colors.blue,
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.bold,
+                            decoration: TextDecoration.underline),
+                      ),
+                    )
+                  ],
+                ),
+              ),
             ],
           ),
         ),
@@ -163,20 +196,24 @@ class _SignUpViewPageState extends State<SignUpViewPage> {
     );
   }
 
-  InputDecoration _buildInputDecoration(String label, IconData suffixIcon) {
+  InputDecoration _buildInputDecoration(String label, IconData icon) {
     return InputDecoration(
-        fillColor: Color(0xAA494A59),
-        enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Color(0x35949494))),
-        focusedBorder:
-            OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
-        filled: true,
-        labelStyle: TextStyle(color: Color(0xFF949494)),
-        labelText: label,
-        suffixIcon: Icon(
-          suffixIcon,
-          color: Color(0xFF949494),
-        ),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)));
+      labelText: label,
+      labelStyle: TextStyle(
+        fontFamily: 'Montserrat',
+        fontWeight: FontWeight.bold,
+        color: Colors.grey,
+      ),
+      suffixIcon: Icon(icon, color: Colors.grey),
+      focusedBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: Colors.blue),
+      ),
+      enabledBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: Colors.grey),
+      ),
+      border: UnderlineInputBorder(
+        borderSide: BorderSide(color: Colors.grey),
+      ),
+    );
   }
 }
