@@ -24,12 +24,12 @@ class TypeBar extends StatelessWidget {
                 Expanded(
                     child: TabBarView(
                   children: [
-                    TransactionList(
+                    TransactionDataList(
                       category: category,
                       type: 'Credit',
                       monthYear: monthYear,
                     ),
-                    TransactionList(
+                    TransactionDataList(
                       category: category,
                       type: 'Credit',
                       monthYear: monthYear,

@@ -1,12 +1,14 @@
 import 'package:bismillahbudget/Widgets/transaction_card.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
-class TransactionList extends StatelessWidget {
-  TransactionList(
-      {super.key, required this.category, required this.type, required this.monthYear});
-
+class TransactionDataList extends StatelessWidget {
+  TransactionDataList(
+      {super.key,
+      required this.category,
+      required this.type,
+      required this.monthYear});
 
   final userId = FirebaseAuth.instance.currentUser!.uid;
 
@@ -21,12 +23,13 @@ class TransactionList extends StatelessWidget {
         .doc(userId)
         .collection("transactions")
         .orderBy('timestamp', descending: true)
-        .where('monthYear', isEqualTo: monthYear)
+        .where('monthyear', isEqualTo: monthYear)
         .where('type', isEqualTo: type);
 
     if (category != 'All') {
       query = query.where('category', isEqualTo: category);
     }
+
     return FutureBuilder<QuerySnapshot>(
         future: query.limit(150).get(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -43,12 +46,11 @@ class TransactionList extends StatelessWidget {
           return ListView.builder(
               shrinkWrap: true,
               itemCount: data.length,
-
               physics: NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
-                var carddata = data[index];
+                var cardData = data[index];
                 return TransactionCard(
-                  data: carddata,
+                  data: cardData,
                 );
               });
         });

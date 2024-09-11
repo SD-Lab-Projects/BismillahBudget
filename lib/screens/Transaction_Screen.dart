@@ -1,43 +1,63 @@
-
 import 'package:bismillahbudget/Widgets/tab_bar_view.dart';
-import 'package:flutter/foundation.dart';
+import 'package:bismillahbudget/Widgets/time_line_month.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../Widgets/category_list.dart';
-import '../Widgets/time_line_month.dart';
 
-class TransactionScreen extends StatelessWidget {
+class TransactionScreen extends StatefulWidget {
   const TransactionScreen({super.key});
 
-  get category => 'Null';
+  @override
+  State<TransactionScreen> createState() => _TransactionScreenState();
+}
 
-  get monthYear => 'Null';
+class _TransactionScreenState extends State<TransactionScreen> {
+  var category = "All";
+  var monthYear = "";
+
+  @override
+  void initState() {
+    super.initState();
+    DateTime now = DateTime.now();
+    setState(() {
+      monthYear = DateFormat('MMM y').format(now);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:
-            Text("Expansive"), // Use 'const' with the constructor to improve pe
+        title: Text("Expenses"),
       ),
-      // AppBar
       body: Column(
-        // Use 'const' with the constructor to improve performance.dTry
         children: [
-          //Use 'const' literals as arguments to constructors of '@immut
           TimeLineMonth(
-            //Use 'const' with the constructor to improve performan
-            onChanged: (String? value) {},
-          ), //TimeLineMonth
+            onChanged: (String? value) {
+              if (value != null) {
+                setState(() {
+                  monthYear = value;
+                });
+              }
+            },
+          ),
           CategoryList(
-            onChanged: (String? value) {},
+            onChanged: (String? value) {
+              if (value != null) {
+                setState(() {
+                  category = value;
+                });
+              }
+            },
           ),
           TypeBar(
-            category:category ,
+            category: category,
             monthYear: monthYear,
           ),
         ],
-      ), // Column
-    ); // Scaffold
+      ),
+    );
   }
 }
