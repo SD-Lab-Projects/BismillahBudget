@@ -1,6 +1,7 @@
 import 'package:bismillahbudget/Widgets/Navbar.dart';
 import 'package:bismillahbudget/screens/login_page.dart';
 import 'package:bismillahbudget/screens/profile.dart';
+import 'package:bismillahbudget/screens/settingpage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'Home_Screen.dart';
@@ -20,6 +21,7 @@ class _DashBoardState extends State<DashBoard> {
     const HomeScreen(),
     const TransactionScreen(),
     ProfilePage(),
+    SettingsPage(),
   ];
 
   logOut() async {
