@@ -59,8 +59,8 @@ class _SignUpViewPageState extends State<SignUpViewPage> {
             TextButton(
               child: Text("OK"),
               onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
-                Get.to(LoginViewPage()); // Redirect to login page
+                Navigator.of(context).pop();
+                Get.to(LoginViewPage());
               },
             ),
           ],

@@ -31,11 +31,11 @@ class Navbar extends StatelessWidget {
           label: 'Transaction',
         ),
 
-        NavigationDestination(
+        /*NavigationDestination(
           icon: Icon(Icons.person),
           selectedIcon: Icon(Icons.person, color: Colors.white),
           label: 'Profile',
-        ),
+        ),*/
         NavigationDestination(
           icon: Icon(Icons.settings),
           selectedIcon: Icon(Icons.settings, color: Colors.white),

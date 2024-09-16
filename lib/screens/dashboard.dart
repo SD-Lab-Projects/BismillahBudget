@@ -20,7 +20,7 @@ class _DashBoardState extends State<DashBoard> {
   final pageViewList = [
     const HomeScreen(),
     const TransactionScreen(),
-    ProfilePage(),
+    //ProfilePage(),
     SettingsPage(),
   ];
 

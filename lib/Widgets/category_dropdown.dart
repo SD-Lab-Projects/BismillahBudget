@@ -27,7 +27,9 @@ class CategoryDropdown extends StatelessWidget {
                   color: Colors.black45
                 ),),
               ],
-            )))
+            )
+        )
+        )
             .toList(),
         onChanged: onChanged);
   }

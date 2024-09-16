@@ -3,7 +3,6 @@ import 'package:bismillahbudget/screens/dashboard.dart';
 import 'package:bismillahbudget/screens/sign_up_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-// Ensure this is the correct path for your AuthServices
 
 class LoginViewPage extends StatefulWidget {
   @override
@@ -36,7 +35,7 @@ class _LoginViewPageState extends State<LoginViewPage> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,8 +66,9 @@ class _LoginViewPageState extends State<LoginViewPage> {
                     ),
                   ],
                 ),
-                Container(
-                  padding: EdgeInsets.fromLTRB(15.0, 110.0, 0.0, 0.0),
+                Positioned(
+                  left: 15.0,
+                  top: 110.0,
                   child: Text(
                     'Hello',
                     style: TextStyle(
@@ -77,8 +77,9 @@ class _LoginViewPageState extends State<LoginViewPage> {
                         color: Colors.black),
                   ),
                 ),
-                Container(
-                  padding: EdgeInsets.fromLTRB(15.0, 175.0, 0.0, 0.0),
+                Positioned(
+                  left: 15.0,
+                  top: 175.0,
                   child: Text(
                     'There',
                     style: TextStyle(
@@ -87,8 +88,9 @@ class _LoginViewPageState extends State<LoginViewPage> {
                         color: Colors.black),
                   ),
                 ),
-                Container(
-                  padding: EdgeInsets.fromLTRB(220.0, 175.0, 0.0, 0.0),
+                Positioned(
+                  left: 220.0,
+                  top: 175.0,
                   child: Text(
                     '.',
                     style: TextStyle(
@@ -96,7 +98,7 @@ class _LoginViewPageState extends State<LoginViewPage> {
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
                   ),
-                )
+                ),
               ],
             ),
           ),
@@ -130,7 +132,7 @@ class _LoginViewPageState extends State<LoginViewPage> {
   }
 }
 
-class _Credentials extends StatelessWidget {
+class _Credentials extends StatefulWidget {
   final GlobalKey<FormState> formKey;
   final TextEditingController emailController;
   final TextEditingController passwordController;
@@ -146,17 +148,24 @@ class _Credentials extends StatelessWidget {
   });
 
   @override
+  _CredentialsState createState() => _CredentialsState();
+}
+
+class _CredentialsState extends State<_Credentials> {
+  bool _isObscured = true;
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(8),
       child: Container(
         padding: EdgeInsets.only(top: 350.0, left: 20.0, right: 20.0),
         child: Form(
-          key: formKey,
+          key: widget.formKey,
           child: Column(
             children: <Widget>[
               TextFormField(
-                controller: emailController,
+                controller: widget.emailController,
                 decoration: InputDecoration(
                   labelText: 'EMAIL',
                   labelStyle: TextStyle(
@@ -177,8 +186,20 @@ class _Credentials extends StatelessWidget {
               ),
               SizedBox(height: 20.0),
               TextFormField(
-                controller: passwordController,
+                obscureText: _isObscured,
+                controller: widget.passwordController,
                 decoration: InputDecoration(
+                  suffixIcon: IconButton(
+                    padding: const EdgeInsetsDirectional.only(end: 12.0),
+                    icon: _isObscured
+                        ? const Icon(Icons.visibility)
+                        : const Icon(Icons.visibility_off),
+                    onPressed: () {
+                      setState(() {
+                        _isObscured = !_isObscured;
+                      });
+                    },
+                  ),
                   labelText: 'PASSWORD',
                   labelStyle: TextStyle(
                     fontFamily: 'Montserrat',
@@ -189,7 +210,6 @@ class _Credentials extends StatelessWidget {
                     borderSide: BorderSide(color: Colors.green),
                   ),
                 ),
-                obscureText: true,
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Please enter a password';
@@ -198,23 +218,6 @@ class _Credentials extends StatelessWidget {
                 },
               ),
               SizedBox(height: 5.0),
-              /*Container(
-                alignment: Alignment(1.0, 0.0),
-                padding: EdgeInsets.only(top: 15.0, left: 20.0),
-                child: InkWell(
-                  onTap: () {
-                    Get.to();
-                  },
-                  child: Text(
-                    'Forgot Password',
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Montserrat',
-                    ),
-                  ),
-                ),
-              ),*/
               SizedBox(height: 40.0),
               Container(
                 height: 40.0,
@@ -225,31 +228,24 @@ class _Credentials extends StatelessWidget {
                   elevation: 7.0,
                   child: GestureDetector(
                     onTap: () {
-                      isLoader ? print("Loading") : submitForm(context);
+                      widget.isLoader
+                          ? print("Loading")
+                          : widget.submitForm(context);
                     },
                     child: Center(
-                      child: isLoader
+                      child: widget.isLoader
                           ? CircularProgressIndicator(
-                              valueColor:
-                                  AlwaysStoppedAnimation<Color>(Colors.white),
-                            )
-                          : Container(
-                              height: 40.0,
-                              child: Material(
-                                borderRadius: BorderRadius.circular(20.0),
-                                shadowColor: Colors.greenAccent,
-                                color: Colors.blue,
-                                elevation: 7.0,
-                                child: Text(
-                                  'LOGIN',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Montserrat',
-                                  ),
-                                ),
-                              ),
-                            ),
+                        valueColor:
+                        AlwaysStoppedAnimation<Color>(Colors.white),
+                      )
+                          : Text(
+                        'LOGIN',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Montserrat',
+                        ),
+                      ),
                     ),
                   ),
                 ),

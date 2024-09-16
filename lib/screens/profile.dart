@@ -1,4 +1,4 @@
-
+//profile page is not finished so its not implemented onto the main code
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -15,41 +15,41 @@ class ProfilePage extends StatelessWidget {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center, // Centers content vertically
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Profile image section
+
             CircleAvatar(
               radius: 70,
-              backgroundColor: Colors.grey[300], // Background color if image fails to load
+              backgroundColor: Colors.grey[300],
             ),
-            SizedBox(height: 16), // Space between image and username
+            SizedBox(height: 16),
 
-            // Username
+
             Text(
-              'John Doe', // Replace with actual username
+              'Ashfaq Durjoy',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 8), // Space between username and email
+            SizedBox(height: 8),
 
-            // Email
+
             Text(
-              'johndoe@example.com', // Replace with actual email
+              'ashfaq.cse.20220204002@aust.edu',
               style: TextStyle(
                 fontSize: 16,
-                color: Colors.grey[700], // Slightly lighter color for the email
+                color: Colors.grey[700],
               ),
             ),
-            SizedBox(height: 8), // Space between email and account status
+            SizedBox(height: 8),
 
-            // Account status
+
             Text(
-              'Account Status: Active', // Replace with dynamic status
+              'Account Status: Active', // it was supposed to be dynamic status, which would show if the account is used regularly
               style: TextStyle(
                 fontSize: 16,
-                color: Colors.green, // Green for active, you can change this dynamically for "Inactive"
+                color: Colors.green,
               ),
             ),
           ],

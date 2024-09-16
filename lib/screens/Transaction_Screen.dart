@@ -30,7 +30,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Expenses"),
+        title: Text("Expense History"),
       ),
       body: Column(
         children: [

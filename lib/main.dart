@@ -1,4 +1,6 @@
 import 'package:bismillahbudget/screens/Intro.dart';
+import 'package:bismillahbudget/screens/dashboard.dart';
+import 'package:bismillahbudget/screens/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -30,7 +32,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: AuthGate(),
+      home: DashBoard(),
     );
   }
 }

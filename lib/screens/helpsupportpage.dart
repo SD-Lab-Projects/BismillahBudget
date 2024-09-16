@@ -14,7 +14,7 @@ class HelpAndSupportPage extends StatelessWidget {
         ),
         backgroundColor: Colors.blue.shade900,
         iconTheme: IconThemeData(
-          color: Colors.white, // Change back button color to white
+          color: Colors.white,
         ),
       ),
       body: Padding(
@@ -36,7 +36,7 @@ class HelpAndSupportPage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 16), // Add some space between search bar and FAQ list
+            SizedBox(height: 16),
 
             // FAQ list
             Expanded(
@@ -56,11 +56,11 @@ class HelpAndSupportPage extends StatelessWidget {
                   ),
                   FAQItem(
                     question: 'Contact Developers',
-                    answer: '(issh shokh koto support khuje).',
+                    answer: 'ashfaq.cse.2022020002@aust.edu',
                   ),
                   FAQItem(
                     question: 'Total Balance is not matching credit-debit',
-                    answer: 'Parum na Solve korte Use Calculator',
+                    answer: 'Please restart the application, if not solved contact support',
                   ),
                 ],
               ),

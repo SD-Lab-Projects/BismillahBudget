@@ -33,7 +33,7 @@ class _CategoryListState extends State<CategoryList> {
 
   void addDefaultCategory() {
     var addCat = {
-      "name": "all",
+      "name": "All",
       "icon": FontAwesomeIcons.cartPlus,
     };
     appIcons.homeExpensesCategories.insert(0, addCat);

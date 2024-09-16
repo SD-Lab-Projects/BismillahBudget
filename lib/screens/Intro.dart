@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'login_page.dart';
-
+//the welcome page was changed with a splash screen but the screen was not working so its not impemented onto the main project
 class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

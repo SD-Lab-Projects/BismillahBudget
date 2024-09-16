@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 class TimeLineMonth extends StatefulWidget {
   const TimeLineMonth({super.key, required this.onChanged});
 
-  final ValueChanged<String> onChanged; // Use String type for month
+  final ValueChanged<String> onChanged;
 
   @override
   State<TimeLineMonth> createState() => _TimeLineMonthState();
@@ -19,12 +19,15 @@ class _TimeLineMonthState extends State<TimeLineMonth> {
   void initState() {
     super.initState();
     DateTime now = DateTime.now();
-    for (int i = -18; i <= 0; i++) {
-      months.add(DateFormat('MMM y').format(DateTime(now.year, now.month + i, 1)));
+
+    for (int i = 0; i <= 18; i++) {
+      DateTime date = DateTime(now.year, now.month, 1).subtract(Duration(days: i * 30));
+      months.add(DateFormat('MMM y').format(date));
     }
+
     currentMonth = DateFormat('MMM y').format(now);
 
-    Future.delayed(const Duration(seconds: 1), () { // Use 'const' for clarity
+    Future.delayed(const Duration(milliseconds: 500), () {
       scrollToSelectedMonth();
     });
   }
@@ -32,7 +35,7 @@ class _TimeLineMonthState extends State<TimeLineMonth> {
   void scrollToSelectedMonth() {
     final selectedMonthIndex = months.indexOf(currentMonth);
     if (selectedMonthIndex != -1) {
-      final scrollOffset = (selectedMonthIndex * 100.0) - 170;
+      final scrollOffset = (selectedMonthIndex * 100.0) - 100;
       scrollController.animateTo(
         scrollOffset,
         duration: const Duration(milliseconds: 500),
@@ -54,13 +57,13 @@ class _TimeLineMonthState extends State<TimeLineMonth> {
             onTap: () {
               setState(() {
                 currentMonth = months[index];
-                widget.onChanged(months[index]); // Pass String month
+                widget.onChanged(months[index]);
               });
               scrollToSelectedMonth();
             },
             child: Container(
               width: 80,
-              margin: const EdgeInsets.all(8.0), // Use 'const' for efficiency
+              margin: const EdgeInsets.all(8.0),
               decoration: BoxDecoration(
                 color: currentMonth == months[index]
                     ? Colors.blue.shade900

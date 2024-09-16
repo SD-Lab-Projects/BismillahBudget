@@ -11,8 +11,8 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  bool _notificationsEnabled = true; // State for notification switch
-  bool _darkModeEnabled = false; // State for appearance switch
+  bool _notificationsEnabled = true;
+  bool _darkModeEnabled = false;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class _SettingsPageState extends State<SettingsPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // Notification setting
-            ListTile(
+            /*ListTile(
               leading: Icon(Icons.notifications),
               title: Text(
                 "Notifications",
@@ -43,8 +43,8 @@ class _SettingsPageState extends State<SettingsPage> {
                   });
                 },
               ),
-            ),
-            Divider(),
+            ),*/
+            /*Divider(),
 
             // Appearance setting
             ListTile(
@@ -62,9 +62,8 @@ class _SettingsPageState extends State<SettingsPage> {
                 },
               ),
             ),
-            Divider(),
+            Divider(),*/
 
-            // Help and Support setting
             ListTile(
               leading: Icon(Icons.help),
               title: Text(
@@ -83,7 +82,6 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             Divider(),
 
-            // About setting
             ListTile(
               leading: Icon(Icons.info),
               title: Text(

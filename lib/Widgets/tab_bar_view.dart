@@ -35,8 +35,11 @@ class TypeBar extends StatelessWidget {
                       monthYear: monthYear,
                     ),
                   ],
-                ))
+                )
+                )
               ],
-            )));
+            )
+        )
+    );
   }
 }
