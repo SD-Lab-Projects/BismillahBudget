@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 
-class TransactionsCard extends StatelessWidget {
+/*class TransactionsCard extends StatelessWidget {
   TransactionsCard({super.key});
 
   @override
@@ -26,7 +26,7 @@ class TransactionsCard extends StatelessWidget {
       ),
     );
   }
-}
+}*/
 
 class TransactionCard extends StatelessWidget {
   TransactionCard({
@@ -39,7 +39,8 @@ class TransactionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DateTime date = DateTime.fromMillisecondsSinceEpoch(data['timestamp']);
+    DateTime date= DateTime.fromMillisecondsSinceEpoch(data['timestamp']);
+    // DateTime date = DateTime.fromMillisecondsSinceEpoch(data['timestamp']);
     String formatedDate = DateFormat(' d MMM hh.mma').format(date);
 
     return Padding(
