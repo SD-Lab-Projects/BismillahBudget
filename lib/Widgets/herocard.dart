@@ -1,3 +1,4 @@
+/*
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -160,6 +161,107 @@ class CardOne extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+*/
+import 'package:flutter/material.dart';
+import '../Services/db.dart';
+
+class HeroCard extends StatelessWidget {
+  final int? userId;
+  const HeroCard({super.key, this.userId});
+
+  @override
+  Widget build(BuildContext context) {
+    if (userId == null) {
+      return const SizedBox.shrink();
+    }
+    return FutureBuilder<Map<String, int>>(
+      future: Db().getUserTotals(userId!),
+      builder: (context, snap) {
+        if (snap.connectionState != ConnectionState.done) {
+          return const Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Center(child: CircularProgressIndicator()),
+          );
+        }
+        final totals = snap.data ??
+            const {'remainingAmount': 0, 'totalCredit': 0, 'totalDebit': 0};
+        final remaining = totals['remainingAmount'] ?? 0;
+        final credit = totals['totalCredit'] ?? 0;
+        final debit = totals['totalDebit'] ?? 0;
+
+        return Card(
+          margin: const EdgeInsets.all(16),
+          shape:
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          elevation: 2,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                _StatBox(
+                  label: 'Remaining',
+                  value: remaining,
+                  color: remaining >= 0 ? Colors.teal : Colors.redAccent,
+                  icon: Icons.account_balance_wallet_outlined,
+                ),
+                _StatBox(
+                  label: 'Credit',
+                  value: credit,
+                  color: Colors.green,
+                  icon: Icons.trending_up,
+                ),
+                _StatBox(
+                  label: 'Debit',
+                  value: debit,
+                  color: Colors.red,
+                  icon: Icons.trending_down,
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _StatBox extends StatelessWidget {
+  final String label;
+  final int value;
+  final Color color;
+  final IconData icon;
+
+  const _StatBox({
+    required this.label,
+    required this.value,
+    required this.color,
+    required this.icon,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+    return Column(
+      children: [
+        Icon(icon, color: color),
+        const SizedBox(height: 6),
+        Text(
+          label,
+          style: textTheme.bodySmall?.copyWith(color: Colors.grey[600]),
+        ),
+        const SizedBox(height: 4),
+        Text(
+          value.toString(),
+          style: textTheme.titleMedium?.copyWith(
+            fontWeight: FontWeight.w700,
+            color: color,
+          ),
+        ),
+      ],
     );
   }
 }

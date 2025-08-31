@@ -52,10 +52,10 @@ class _TransactionScreenState extends State<TransactionScreen> {
               }
             },
           ),
-          TypeBar(
-            category: category,
-            monthYear: monthYear,
-          ),
+          //TypeBar(
+           // category: category,
+          //  monthYear: monthYear,
+          //),
         ],
       ),
     );

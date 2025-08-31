@@ -1,3 +1,4 @@
+/*
 import 'package:bismillahbudget/Widgets/transaction_card.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -54,5 +55,27 @@ class TransactionDataList extends StatelessWidget {
                 );
               });
         });
+  }
+}
+*/
+import 'package:flutter/material.dart';
+import 'transaction_card.dart';
+
+class TransactionList extends StatelessWidget {
+  final List<Map<String, dynamic>> transactions;
+  const TransactionList({super.key, required this.transactions});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.separated(
+      itemCount: transactions.length,
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      separatorBuilder: (_, __) => const Divider(height: 0),
+      itemBuilder: (context, i) {
+        final tx = transactions[i];
+        return TransactionCard(tx: tx);
+      },
+    );
   }
 }

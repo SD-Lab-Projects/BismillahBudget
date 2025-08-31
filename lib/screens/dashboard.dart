@@ -2,8 +2,9 @@ import 'package:bismillahbudget/Widgets/Navbar.dart';
 import 'package:bismillahbudget/screens/login_page.dart';
 import 'package:bismillahbudget/screens/profile.dart';
 import 'package:bismillahbudget/screens/settingpage.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+//import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:bismillahbudget/Services/auth_serices.dart';
 import 'Home_Screen.dart';
 import 'Transaction_Screen.dart';
 
@@ -17,6 +18,7 @@ class DashBoard extends StatefulWidget {
 class _DashBoardState extends State<DashBoard> {
   var isLogoutLoading = false;
   int currentIndex = 0;
+  final _auth = AuthServices();
   final pageViewList = [
     const HomeScreen(),
     const TransactionScreen(),
@@ -25,6 +27,8 @@ class _DashBoardState extends State<DashBoard> {
   ];
 
   logOut() async {
+    await _auth.logout(context);
+    /*
     setState(() {
       isLogoutLoading = true;
     });
@@ -33,7 +37,7 @@ class _DashBoardState extends State<DashBoard> {
         .pushReplacement(MaterialPageRoute(builder: (context) => LoginViewPage()));
     setState(() {
       isLogoutLoading = false;
-    });
+    });*/
   }
 
   @override

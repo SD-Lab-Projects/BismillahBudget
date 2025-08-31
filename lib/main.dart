@@ -1,3 +1,4 @@
+/*
 import 'package:bismillahbudget/screens/Intro.dart';
 import 'package:bismillahbudget/screens/dashboard.dart';
 import 'package:bismillahbudget/screens/login_page.dart';
@@ -32,7 +33,45 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: DashBoard(),
+      home: WelcomePage(),
     );
   }
 }
+*/
+
+import 'package:bismillahbudget/screens/Intro.dart';
+import 'package:bismillahbudget/screens/dashboard.dart';
+import 'package:bismillahbudget/screens/login_page.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'Widgets/auth_gate.dart';
+import 'Services/db.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Db().init(); // init local SQLite
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return GetMaterialApp(
+      title: 'Bismillah Budget',
+      builder: (context, child) {
+        return MediaQuery(
+            data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+            child: child!);
+      },
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+      ),
+      debugShowCheckedModeBanner: false,
+      home: const AuthGate(),
+    );
+  }
+}
+
+

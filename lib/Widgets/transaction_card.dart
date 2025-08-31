@@ -1,3 +1,4 @@
+/*
 import 'package:bismillahbudget/Widgets/transactions_cards.dart';
 import 'package:bismillahbudget/utility/icons_list.dart';
 import 'package:flutter/material.dart';
@@ -110,6 +111,51 @@ class TransactionCard extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+*/
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+class TransactionCard extends StatelessWidget {
+  final Map<String, dynamic> tx;
+  const TransactionCard({super.key, required this.tx});
+
+  @override
+  Widget build(BuildContext context) {
+    final String title = (tx['title'] ?? '') as String;
+    final int amount = (tx['amount'] ?? 0) as int;
+    final String type = (tx['type'] ?? 'credit') as String; // 'credit' | 'debit'
+    final String category = (tx['category'] ?? 'General') as String;
+    final int ts = (tx['timestamp'] ?? 0) as int;
+
+    // timestamp saved as microsecondsSinceEpoch in add_transactions.dart
+    final dateTime = DateTime.fromMicrosecondsSinceEpoch(ts, isUtc: false);
+    final dateStr = DateFormat('dd MMM, hh:mm a').format(dateTime);
+
+    final isCredit = type == 'credit';
+    final amountStyle = TextStyle(
+      fontWeight: FontWeight.w700,
+      color: isCredit ? Colors.green : Colors.red,
+    );
+
+    return ListTile(
+      title: Text(title, style: const TextStyle(fontWeight: FontWeight.w600)),
+      subtitle: Text('$category • $dateStr'),
+      trailing: Text(
+        (isCredit ? '+ ' : '- ') + amount.toString(),
+        style: amountStyle,
+      ),
+      leading: CircleAvatar(
+        backgroundColor: isCredit ? Colors.green.withOpacity(.12) : Colors.red.withOpacity(.12),
+        child: Icon(
+          isCredit ? Icons.call_received : Icons.call_made,
+          color: isCredit ? Colors.green : Colors.red,
+        ),
+      ),
+      dense: false,
+      visualDensity: VisualDensity.comfortable,
     );
   }
 }
