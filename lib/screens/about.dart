@@ -23,7 +23,7 @@ class AboutPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                'Bismillah Budget',
+                'Hishab Nikash',
                 style: TextStyle(
                   fontSize: 42,
                   fontWeight: FontWeight.bold,
@@ -34,7 +34,7 @@ class AboutPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Text(
-                  'A project made for our CSE 2100, Software Development Lab-II.',
+                  'A project made for our CSE 3104.',
                   style: TextStyle(fontSize: 16),
                   textAlign: TextAlign.center,
                 ),
@@ -57,7 +57,7 @@ class AboutPage extends StatelessWidget {
               SizedBox(height: 8),
 
               Text(
-                'Jannatul Nayem',
+                'Zarin Tasnim Fema',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -65,13 +65,13 @@ class AboutPage extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               Text(
-                '20220204007',
+                '20220204013',
                 style: TextStyle(fontSize: 16),
               ),
               SizedBox(height: 8),
 
               Text(
-                'Abdullah Al Muhit',
+                'Anupoma Haque Anika',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -79,9 +79,22 @@ class AboutPage extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               Text(
-                '20210104105',
+                '20210104015',
                 style: TextStyle(fontSize: 16),
               ),
+              Text(
+                'Tanzila Tabassum Ahona',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                '20220204006',
+                style: TextStyle(fontSize: 16),
+              ),
+              SizedBox(height: 8),
             ],
           ),
         ),

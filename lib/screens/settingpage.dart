@@ -1,6 +1,7 @@
-
 import 'package:bismillahbudget/screens/About.dart';
 import 'package:bismillahbudget/screens/helpsupportPage.dart';
+import 'package:bismillahbudget/Services/auth_serices.dart';
+import 'package:bismillahbudget/screens/login_page.dart';
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -11,16 +12,16 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  bool _notificationsEnabled = true;
-  bool _darkModeEnabled = false;
+  final authService = AuthServices();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Settings",
-          style: TextStyle(
-              color: Colors.white),),
+        title: const Text(
+          "Settings",
+          style: TextStyle(color: Colors.white),
+        ),
         backgroundColor: Colors.blue.shade900,
       ),
       body: Padding(
@@ -28,84 +29,53 @@ class _SettingsPageState extends State<SettingsPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // Notification setting
-            /*ListTile(
-              leading: Icon(Icons.notifications),
-              title: Text(
-                "Notifications",
-                style: TextStyle(fontSize: 18),
-              ),
-              trailing: Switch(
-                value: _notificationsEnabled,
-                onChanged: (bool value) {
-                  setState(() {
-                    _notificationsEnabled = value;
-                  });
-                },
-              ),
-            ),*/
-            /*Divider(),
-
-            // Appearance setting
             ListTile(
-              leading: Icon(Icons.color_lens),
-              title: Text(
-                "Appearance",
-                style: TextStyle(fontSize: 18),
-              ),
-              trailing: Switch(
-                value: _darkModeEnabled,
-                onChanged: (bool value) {
-                  setState(() {
-                    _darkModeEnabled = value;
-                  });
-                },
-              ),
-            ),
-            Divider(),*/
-
-            ListTile(
-              leading: Icon(Icons.help),
-              title: Text(
-                "Help & Support",
-                style: TextStyle(fontSize: 18),
-              ),
-              trailing: Icon(Icons.arrow_forward_ios),
+              leading: const Icon(Icons.help),
+              title: const Text("Help & Support", style: TextStyle(fontSize: 18)),
+              trailing: const Icon(Icons.arrow_forward_ios),
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => HelpAndSupportPage(),
-                  ),
+                  MaterialPageRoute(builder: (context) => const HelpAndSupportPage()),
                 );
               },
             ),
-            Divider(),
+            const Divider(),
 
             ListTile(
-              leading: Icon(Icons.info),
-              title: Text(
-                "About",
-                style: TextStyle(fontSize: 18),
-              ),
-              trailing: Icon(Icons.arrow_forward_ios),
+              leading: const Icon(Icons.info),
+              title: const Text("About", style: TextStyle(fontSize: 18)),
+              trailing: const Icon(Icons.arrow_forward_ios),
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => AboutPage(),
-                  ),
+                  MaterialPageRoute(builder: (context) => const AboutPage()),
                 );
               },
             ),
-            Divider(),
+            const Divider(),
+
+            const Spacer(),
+
+
+            ListTile(
+              leading: const Icon(Icons.logout, color: Colors.red),
+              title: const Text(
+                "Logout",
+                style: TextStyle(fontSize: 18, color: Colors.red),
+              ),
+              onTap: () async {
+                await authService.logout(context);
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginViewPage()),
+                      (route) => false,
+                );
+              },
+            ),
           ],
         ),
       ),
     );
   }
 }
-
-
-
-
