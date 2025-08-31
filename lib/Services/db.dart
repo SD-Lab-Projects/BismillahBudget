@@ -50,13 +50,13 @@ class Db {
   Future<void> init() async {
     if (_db != null) return;
 
-    // SQLite not available on Flutter Web
+
     if (kIsWeb) {
       debugPrint('[Db.init] Skipped: SQLite is not supported on Flutter Web.');
       throw UnsupportedError('SQLite not supported on web. Run on Android/iOS or add a web store.');
     }
 
-    // Use sqflite’s getDatabasesPath — no path_provider needed
+
     final dbDir = await getDatabasesPath();
     final dbPath = p.join(dbDir, 'bismillah_budget.db');
 
@@ -110,7 +110,7 @@ class Db {
   }
 
 
-  // -------- Password helpers --------
+
   String _randomSalt([int bytes = 16]) {
     final rand = Random.secure();
     final data = List<int>.generate(bytes, (_) => rand.nextInt(256));
@@ -123,7 +123,7 @@ class Db {
     return digest.toString();
   }
 
-  // -------- Session helpers --------
+
   Future<void> _setCurrentUserId(int userId) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setInt('currentUserId', userId);
@@ -139,7 +139,7 @@ class Db {
     return prefs.getInt('currentUserId');
   }
 
-  // -------- User operations --------
+
   Future<Map<String, dynamic>?> getUserByEmail(String email) async {
     final db = _requireDb;
     final rows =
@@ -156,7 +156,7 @@ class Db {
     return rows.first;
   }
 
-  // kept for compatibility with your original AuthServices signature
+
   Future<void> addUser(Map<String, dynamic> data, BuildContext context) async {
     await createUser(data);
   }
@@ -230,7 +230,7 @@ class Db {
         conflictAlgorithm: ConflictAlgorithm.abort);
   }
 
-  // (optional) helpers you can use in list widgets:
+
   Future<List<Map<String, dynamic>>> getTransactionsForUser(int userId,
       {int? limit, int? offset}) async {
     final db = _requireDb;

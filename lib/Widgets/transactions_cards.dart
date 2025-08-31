@@ -93,7 +93,7 @@ class _TransactionsCardState extends State<TransactionsCard> {
   }
 
   Future<List<Map<String, dynamic>>> _loadTx(int uid) {
-    // You can adjust limit/offset if you want pagination
+
     return Db().getTransactionsForUser(uid);
   }
 

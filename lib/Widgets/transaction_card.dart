@@ -130,7 +130,7 @@ class TransactionCard extends StatelessWidget {
     final String category = (tx['category'] ?? 'General') as String;
     final int ts = (tx['timestamp'] ?? 0) as int;
 
-    // timestamp saved as microsecondsSinceEpoch in add_transactions.dart
+
     final dateTime = DateTime.fromMicrosecondsSinceEpoch(ts, isUtc: false);
     final dateStr = DateFormat('dd MMM, hh:mm a').format(dateTime);
 

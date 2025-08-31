@@ -204,7 +204,7 @@ class _AddTransactionsFormState extends State<AddTransactionsForm> {
       final timestamp = DateTime.now().microsecondsSinceEpoch;
       final monthyear = DateFormat('MM y').format(date);
 
-      // Get + update user totals
+
       final totals = await db.getUserTotals(userId);
       var remainingAmount = totals['remainingAmount']!;
       var totalCredit = totals['totalCredit']!;
@@ -225,7 +225,7 @@ class _AddTransactionsFormState extends State<AddTransactionsForm> {
         totalDebit: totalDebit,
       );
 
-      // Insert transaction row
+
       final data = {
         'id': id,
         'user_id': userId,
@@ -293,8 +293,8 @@ class _AddTransactionsFormState extends State<AddTransactionsForm> {
                 const SizedBox(width: 12),
                 Expanded(
                   child: CategoryDropdown(
-                    // pass through if your widget supports it (optional)
-                    // cattype: type,
+
+
                     onChanged: (val) => setState(() => category = val ?? 'General'),
                   ),
                 ),
